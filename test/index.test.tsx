@@ -49,7 +49,7 @@ describe('useImageLoad', () => {
     unmount();
     expect(mockRemoveEventListener).toHaveBeenCalled();
   });
-  it('should trigger the initial fetch', async () => {
+  it('should return hasLoaded true if the fetch was successful', async () => {
     const { result, waitForNextUpdate } = renderHook(() =>
       useImageLoad(LOAD_SUCCESS_SRC)
     );
@@ -57,7 +57,7 @@ describe('useImageLoad', () => {
     expect(result.current).toEqual({
       hasError: false,
       hasLoaded: true,
-      isFetching: true,
+      isFetching: false,
       image: LOAD_SUCCESS_SRC,
     });
   });
@@ -80,7 +80,7 @@ describe('useImageLoad', () => {
       hasError: true,
       hasLoaded: false,
       isFetching: false,
-      image: image,
+      image,
     });
   });
 });
