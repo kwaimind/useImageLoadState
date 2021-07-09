@@ -40,11 +40,11 @@
   "size-limit": [
     {
       "path": "dist/useimageload.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "400 B"
     },
     {
       "path": "dist/useimageload.esm.js",
-      "limit": "10 KB"
+      "limit": "400 B"
     }
   ],
   "devDependencies": {
