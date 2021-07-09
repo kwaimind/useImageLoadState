@@ -1,5 +1,10 @@
 # useImageLoad 🖼
 
+## todo:
+- make public
+- add to npm
+- create a codesandbox demo
+
 > A simple React hook for listening to image load/error states
 
 `useImageLoad` is a reusable hook that listens for load and error events on given image, and returns their current state. This allows you to implement functionaility based on the image state without having to rewrite callbacks and event listeners each time.
