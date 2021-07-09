@@ -23,11 +23,6 @@ describe('it', () => {
       hasError: false,
       hasLoaded: false,
       isFetching: true,
-    });
-  });
-  it('should return the original image url', () => {
-    const { result } = renderHook(() => useImageLoad(LOAD_SUCCESS_SRC));
-    expect(result.current).toEqual({
       image: LOAD_SUCCESS_SRC,
     });
   });
@@ -40,6 +35,7 @@ describe('it', () => {
       hasError: false,
       hasLoaded: true,
       isFetching: true,
+      image: LOAD_SUCCESS_SRC,
     });
   });
   it('should return an error if something has gone wrong', async () => {
@@ -51,6 +47,7 @@ describe('it', () => {
       hasError: true,
       hasLoaded: false,
       isFetching: true,
+      image: LOAD_FAILURE_SRC,
     });
   });
 });
