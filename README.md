@@ -1,9 +1,10 @@
 # useImageLoad 🖼
 
 ## todo:
+
 - make public
 - add to npm
-- create a codesandbox demo
+- create a codesandbox demo https://codesandbox.io/s/useimageload-e0g1h?file=/src/useImageLoad.tsx:0-1608
 
 > A simple React hook for listening to image load/error states
 
@@ -22,14 +23,6 @@ import useOnImageLoad from '../useOnImageLoad';
 
 const image = 'https://www.fillmurray.com/460/300';
 const { hasError, hasLoaded, isFetching } = useOnImageLoad(image);
-
-// returns =>
-//            {
-//              hasError: false,
-//              hasLoaded: true,
-//              isFetching: true,
-//              image: 'https://www.fillmurray.com/460/300'
-//             }
 ```
 
 ## Return values
