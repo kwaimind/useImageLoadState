@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
+const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*)/;
+
 const useOnImageLoad = (imageSrc: string) => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -15,6 +17,12 @@ const useOnImageLoad = (imageSrc: string) => {
   }, []);
 
   useEffect(() => {
+    const isValid = regex.test(imageSrc);
+    if (!isValid) {
+      handleError();
+      return;
+    }
+
     setIsFetching(true);
     const image = new Image();
 
