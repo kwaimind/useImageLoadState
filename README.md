@@ -2,7 +2,7 @@
 
 > A simple React hook for listening to image load/error states
 
-Built in Typescript with RxJS. `useImageLoad` listens for load and error events on the image class and returns their current state. RxJS unsubscribes all event listeners when the hook is unmounted.
+Built in Typescript. `useImageLoad` listens for load and error events on the image class and returns their current state. Also unsubscribes all event listeners when the hook is unmounted.
 
 ## Usage
 

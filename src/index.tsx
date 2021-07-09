@@ -1,6 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import { fromEvent, merge } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 const useOnImageLoad = (imageSrc: string) => {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -20,13 +18,13 @@ const useOnImageLoad = (imageSrc: string) => {
     setIsFetching(true);
     const image = new Image();
 
-    const onLoad = fromEvent(image, 'load').pipe(map(handleLoad));
-    const onError = fromEvent(image, 'error').pipe(map(handleError));
-    const allEvents = merge(onLoad, onError);
-
-    const subscribe = allEvents.subscribe();
+    image.addEventListener('load', handleLoad);
+    image.addEventListener('error', handleError);
     image.src = imageSrc;
-    return () => subscribe.unsubscribe();
+    return () => {
+      image.removeEventListener('load', handleLoad);
+      image.removeEventListener('error', handleError);
+    };
   }, [handleError, handleLoad, imageSrc]);
 
   return { hasLoaded, hasError, isFetching, image: imageSrc };
