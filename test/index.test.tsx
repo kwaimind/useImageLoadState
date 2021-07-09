@@ -2,8 +2,8 @@ import useImageLoad from '../src';
 import { renderHook } from '@testing-library/react-hooks';
 
 describe('it', () => {
-  const LOAD_FAILURE_SRC = 'https://www.fillmurray.com/error';
   const LOAD_SUCCESS_SRC = 'https://www.fillmurray.com/460/300';
+  const LOAD_FAILURE_SRC = 'https://www.fillmurray.com/error';
 
   beforeAll(() => {
     Object.defineProperty(global.Image.prototype, 'src', {
@@ -23,6 +23,12 @@ describe('it', () => {
       hasError: false,
       hasLoaded: false,
       isFetching: true,
+    });
+  });
+  it('should return the original image url', () => {
+    const { result } = renderHook(() => useImageLoad(LOAD_SUCCESS_SRC));
+    expect(result.current).toEqual({
+      image: LOAD_SUCCESS_SRC,
     });
   });
   it('should trigger the initial fetch', async () => {

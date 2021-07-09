@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { fromEvent, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-// Originally taken from https://typesafe.blog/article/fetch-images-with-a-react-hook
 const useOnImageLoad = (imageSrc: string) => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -30,7 +29,7 @@ const useOnImageLoad = (imageSrc: string) => {
     return () => subscribe.unsubscribe();
   }, [handleError, handleLoad, imageSrc]);
 
-  return { hasLoaded, hasError, isFetching };
+  return { hasLoaded, hasError, isFetching, image: imageSrc };
 };
 
 export default useOnImageLoad;
