@@ -15,10 +15,10 @@
 ## Usage
 
 ```js
-import useImageLoadState from 'useImageLoadState';
+import useImageLoadState from "useimageloadstate";
 
 const image = 'https://www.fillmurray.com/460/300';
-const { hasError, hasLoaded, isFetching } = useImageLoadState(image);
+const { hasLoaded, hasError, isFetching } = useImageLoadState(image);
 ```
 
 ## Return values
