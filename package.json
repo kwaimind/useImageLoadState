@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -34,16 +34,16 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "useimageload",
+  "name": "useimageloadstate",
   "author": "Daniel Reed",
-  "module": "dist/useimageload.esm.js",
+  "module": "dist/useimageloadstate.esm.js",
   "size-limit": [
     {
-      "path": "dist/useimageload.cjs.production.min.js",
+      "path": "dist/useimageloadstate.cjs.production.min.js",
       "limit": "500 B"
     },
     {
-      "path": "dist/useimageload.esm.js",
+      "path": "dist/useimageloadstate.esm.js",
       "limit": "500 B"
     }
   ],

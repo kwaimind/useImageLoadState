@@ -24,7 +24,7 @@ const reducer = (state: StateType, { type, image = '' }: ActionType) => {
   }
 };
 
-const useOnImageLoad = (imageSrc: string) => {
+const useImageLoadState = (imageSrc: string) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleError = useCallback(() => {
@@ -57,4 +57,4 @@ const useOnImageLoad = (imageSrc: string) => {
   return state;
 };
 
-export default useOnImageLoad;
+export default useImageLoadState;

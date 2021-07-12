@@ -1,7 +1,7 @@
-import useImageLoad from '../src';
 import { renderHook } from '@testing-library/react-hooks';
+import useImageLoadState from '../src';
 
-describe('useImageLoad', () => {
+describe('useImageLoadState', () => {
   const LOAD_SUCCESS_SRC = 'https://www.fillmurray.com/460/300';
   const LOAD_FAILURE_SRC = 'https://www.fillmurray.com/error';
 
@@ -14,7 +14,7 @@ describe('useImageLoad', () => {
   beforeEach(() => {
     global.HTMLImageElement.prototype.removeEventListener = mockRemoveEventListener;
     Object.defineProperty(global.HTMLImageElement.prototype, 'src', {
-      set: function(src) {
+      set(src) {
         if (src === LOAD_FAILURE_SRC) {
           setTimeout(() => this.dispatchEvent(new Event('error')));
         } else if (src === LOAD_SUCCESS_SRC) {
@@ -29,7 +29,7 @@ describe('useImageLoad', () => {
   });
 
   it('should trigger the initial fetch', () => {
-    const { result } = renderHook(() => useImageLoad(LOAD_SUCCESS_SRC));
+    const { result } = renderHook(() => useImageLoadState(LOAD_SUCCESS_SRC));
     expect(result.current).toEqual({
       hasError: false,
       hasLoaded: false,
@@ -39,19 +39,19 @@ describe('useImageLoad', () => {
   });
   it('should add event listeners on mount', () => {
     global.HTMLImageElement.prototype.addEventListener = mockAddEventListener;
-    renderHook(() => useImageLoad(LOAD_SUCCESS_SRC));
+    renderHook(() => useImageLoadState(LOAD_SUCCESS_SRC));
     expect(mockAddEventListener).toHaveBeenCalled();
     global.HTMLImageElement.prototype.addEventListener = originalAdd;
   });
   it('should remove event listeners on unmount', () => {
-    const { unmount } = renderHook(() => useImageLoad(LOAD_SUCCESS_SRC));
+    const { unmount } = renderHook(() => useImageLoadState(LOAD_SUCCESS_SRC));
     expect(mockRemoveEventListener).not.toHaveBeenCalled();
     unmount();
     expect(mockRemoveEventListener).toHaveBeenCalled();
   });
   it('should return hasLoaded true if the fetch was successful', async () => {
     const { result, waitForNextUpdate } = renderHook(() =>
-      useImageLoad(LOAD_SUCCESS_SRC)
+      useImageLoadState(LOAD_SUCCESS_SRC)
     );
     await waitForNextUpdate();
     expect(result.current).toEqual({
@@ -63,7 +63,7 @@ describe('useImageLoad', () => {
   });
   it('should return an error if something has gone wrong', async () => {
     const { result, waitForNextUpdate } = renderHook(() =>
-      useImageLoad(LOAD_FAILURE_SRC)
+      useImageLoadState(LOAD_FAILURE_SRC)
     );
     await waitForNextUpdate();
     expect(result.current).toEqual({
@@ -75,7 +75,7 @@ describe('useImageLoad', () => {
   });
   it('should not work with invalid urls', () => {
     const image = '/460/300';
-    const { result } = renderHook(() => useImageLoad(image));
+    const { result } = renderHook(() => useImageLoadState(image));
     expect(result.current).toEqual({
       hasError: true,
       hasLoaded: false,
