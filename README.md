@@ -1,9 +1,6 @@
 # useImageLoadState 🖼
 
-## todo:
-
-- add to npm
-- create a codesandbox demo https://codesandbox.io/s/useimageload-e0g1h?file=/src/useImageLoad.tsx:0-1608
+[![bundlephobia](https://img.shields.io/bundlephobia/minzip/useimageloadstate?style=flat-square)](https://bundlephobia.com/package/useimageloadstate) [![npm version](https://img.shields.io/npm/v/useimageloadstate?style=flat-square)](https://www.npmjs.com/package/useimageloadstate) 
 
 > A simple React hook for listening to image load/error states
 
@@ -11,7 +8,7 @@
 
 ## Features
 
-- Lightweight < 400B
+- Lightweight < 468B
 - Unsubscribes all event listeners when the hook is unmounted
 - Written and typed with TypeScript
 
